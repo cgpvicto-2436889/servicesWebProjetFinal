@@ -1,0 +1,88 @@
+<!-- HTML fait pas ChatGPt -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Épreuve finale - Services Web H26</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Div qui englobe tout la page -->
+  <div class="fenetre">
+    <div class="barre-haut">
+      <div class="rond"></div>
+      <div class="rond"></div>
+      <div class="rond"></div>
+    </div>
+
+    <!-- Div qui contient les éléments principal de la page -->
+    <div class="contenu">
+      <h1>Épreuve finale - Services Web H26</h1>
+      <div class="nom-eleve">Nom de l'élève</div>
+      <!-- Div qui englobe tout les 'formulaire' -->
+      <div class="colonnes">
+        <!-- COLONNE GAUCHE -->
+        <div class="colonne">
+          <h2>Création d'une bibliothèque</h2>
+
+          <div class="groupe">
+            <label>Nom de la bibliothèque</label>
+            <input type="text" placeholder="Votre bibliothèque">
+          </div>
+
+          <div class="groupe">
+            <label>Courriel</label>
+            <input type="email" placeholder="Votre courriel">
+          </div>
+
+          <div class="groupe">
+            <label>Mot de passe</label>
+            <div class="champ-mdp">
+              <input type="password" placeholder="********">
+              <button type="button" class="oeil">◉</button>
+            </div>
+          </div>
+
+          <div class="btn-zone">
+            <button>Créer</button>
+          </div>
+        </div>
+
+        <div class="separateur"></div>
+
+        <!-- COLONNE DROITE -->
+        <div class="colonne">
+          <h2>Récupération d'une clé api</h2>
+
+          <div class="groupe">
+            <label>Courriel</label>
+            <input type="email" placeholder="Votre courriel">
+          </div>
+
+          <div class="groupe">
+            <label>Mot de passe</label>
+            <div class="champ-mdp">
+              <input type="password" placeholder="********">
+              <button type="button" class="oeil">◉</button>
+            </div>
+          </div>
+
+          <div class="checkbox-ligne">
+            <label>
+              <input type="checkbox" checked>
+              Générer une nouvelle clé
+            </label>
+          </div>
+
+          <div class="btn-zone">
+            <button>Récupérer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+/* CSS fait par ChatGPT */
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Fenêtre */
+.fenetre {
+  width: 1100px;
+  background: white;
+  border: 3px solid black;
+}
+
+/* Barre du haut */
+.barre-haut {
+  height: 55px;
+  border-bottom: 3px solid black;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  gap: 10px;
+}
+
+.rond {
+  width: 14px;
+  height: 14px;
+  border: 3px solid black;
+  border-radius: 50%;
+}
+
+/* Contenu */
+.contenu {
+  padding: 30px 40px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  margin: 0;
+}
+
+.nom-eleve {
+  text-align: center;
+  margin: 15px 0 60px;
+  font-size: 22px;
+}
+
+/* Colonnes */
+.colonnes {
+  display: flex;
+  gap: 40px;
+}
+
+.colonne {
+  width: 50%;
+  padding: 0 20px;
+}
+
+.separateur {
+  width: 2px;
+  background: gray;
+}
+
+/* Formulaire */
+h2 {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.groupe {
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  height: 45px;
+  border: 2px solid black;
+  padding: 0 10px;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+/* Champ mot de passe */
+.champ-mdp {
+  position: relative;
+}
+
+.oeil {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+
+  padding: 0;
+  margin: 0;
+}
+
+.oeil:hover {
+  background: none;
+  transform: translateY(-50%);
+}
+
+.oeil:focus {
+  outline: none;
+}
+
+.oeil:active {
+  transform: translateY(-50%);
+}
+
+/* Checkbox */
+.checkbox-ligne {
+  margin-top: 10px;
+}
+
+/* Boutons */
+.btn-zone {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+button {
+  padding: 12px 30px;
+  border: 3px solid black;
+  background: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #eee;
+}
