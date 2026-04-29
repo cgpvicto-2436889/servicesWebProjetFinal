@@ -1,7 +1,7 @@
 import pool from '../config/db_pg.js';
 
 /* Requête qui ajoute un prêts dans la base de donnée */
-export async function ajouterPrêtModel() {
+export async function ajouterPretModel() {
     const requete = `
     INSERT INTO prets ( livre_id, emprunteur, date_retour )
     VALUES ( livre_id = $1, emprunteur = $2, date_retour = $3 )
@@ -23,7 +23,7 @@ export async function ajouterPrêtModel() {
 }
 
 /* Requête qui modifie le prêts avec tous ses paramètres */
-export async function modifierLivreModel(id, data) {
+export async function modifierpretModel(id, data) {
     const requete = `
     UPDATE prets
     SET 
@@ -50,7 +50,7 @@ export async function modifierLivreModel(id, data) {
 }
 
 /* Requête qui supprime un prêt de la base de donnée */
-export async function supprimerLivreModel(id) {
+export async function supprimerPretModel(id) {
     const requete = `
         DELETE FROM prets
         WHERE id = $1
