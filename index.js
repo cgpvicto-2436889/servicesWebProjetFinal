@@ -3,7 +3,7 @@ import livresRoutes from "./src/routes/livres.routes.js";
 import pretsRoutes from "./src/routes/prets.routes.js";
 import utilisateursRoutes from "./src/routes/utilisateurs.routes.js";
 /* Viens du site du cours */
-import authentification from '../middlewares/authentification.middleware.js';
+import authentification from './src/middlewares/authentification.middleware.js';
 
 const app = express();
 
