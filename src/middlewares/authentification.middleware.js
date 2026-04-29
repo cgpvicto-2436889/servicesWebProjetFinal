@@ -1,5 +1,5 @@
 /* Viens du site du cours */
-import { validationCle } from "../models/utilisateurs.model";
+import { validationCle } from "../models/utilisateurs.model.js";
 
 const authentification = async (req, res, next) => {
 
