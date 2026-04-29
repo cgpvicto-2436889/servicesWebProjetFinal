@@ -23,7 +23,7 @@ export async function ajouterPretModel() {
 }
 
 /* Requête qui modifie le prêts avec tous ses paramètres */
-export async function modifierpretModel(id, data) {
+export async function modifierPretModel(id, data) {
     const requete = `
     UPDATE prets
     SET 
