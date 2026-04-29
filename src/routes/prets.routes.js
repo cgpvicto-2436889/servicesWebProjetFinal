@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { ajouterPret, modifierPret, supprimerPret } from "../controllers/prets.controller.js";
+import { ajouterPretController, modifierPretController, supprimerPretController } from "../controllers/prets.controller.js";
 
 const router = Router();
 
-router.post("/", ajouterUtilisateur);
-router.get("/cle", recupererCleApi);
-router.patch("/cle", regenererCleApi);
+router.post("/", ajouterUtilisateurController);
+router.get("/cle", recupererCleApiController);
+router.patch("/cle", regenererCleApiController);
 
 export default router;

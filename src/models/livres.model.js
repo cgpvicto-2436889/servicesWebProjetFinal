@@ -1,7 +1,7 @@
 import pool from '../config/db_pg.js';
 
 /* Requête qui selectionne tous les livres qui sont disponibles */
-export async function getLivresDisponibles() {
+export async function getLivresDisponiblesModel() {
     const requete = `
         SELECT titre, auteur
         FROM livres
@@ -20,7 +20,7 @@ export async function getLivresDisponibles() {
 };
 
 /* Requête qui selectionne tous les livres de la bibliothèque quand selectionner avec un option */
-export async function getLivres() {
+export async function getLivresModel() {
     const requete = `
         SELECT titre, auteur
         FROM livres
@@ -39,7 +39,7 @@ export async function getLivres() {
 
 
 /* Affiche tous les détails d'un livre choisie avec un bouton */
-export async function getInfosLivre(id) {
+export async function getInfosLivreModel(id) {
     const requete = `
         SELECT id, bibliotheque_id, titre, auteur, isbn, date_ajout, disponible
         FROM livres
@@ -60,7 +60,7 @@ export async function getInfosLivre(id) {
 
 
 /* Requête qui ajoute un livre dans la base de donnée avec un formulaire */
-export async function ajouterLivre(data) {
+export async function ajouterLivreModel(data) {
     const requete = `
     INSERT INTO livres ( titre, auteur, isbn, date_ajout, disponible )
     VALUES ( $1, $2, $3, $4, true )
@@ -84,7 +84,7 @@ export async function ajouterLivre(data) {
 }
 
 /* Requête qui modifie le livre avec tous ses paramètres */
-export async function modifierLivre(id, data) {
+export async function modifierLivreModel(id, data) {
     const requete = `
     UPDATE livres
     SET 
@@ -113,7 +113,7 @@ export async function modifierLivre(id, data) {
 }
 
 /* Requête qui modifie le status du livre. A nous de choisir quelle est le status que l'on veut mettre dans les paramètres */
-export async function modifierStatutLivre(id, disponible) {
+export async function modifierStatutLivreModel(id, disponible) {
     const requete = `
         UPDATE livres
         SET disponible = $1
@@ -133,7 +133,7 @@ export async function modifierStatutLivre(id, disponible) {
 }
 
 /* Requête qui supprime un livre de la base de donnée */
-export async function supprimerLivre(id) {
+export async function supprimerLivreModel(id) {
     const requete = `
         DELETE FROM livres
         WHERE id = $1

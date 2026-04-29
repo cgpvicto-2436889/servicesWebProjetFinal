@@ -1,4 +1,9 @@
 import { Router } from "express";
-import { ajouterUtilisateur, recupererCleApi, modifierCleApi } from "../controllers/prets.controller.js";
+import { ajouterUtilisateurController, recupererCleApiController, modifierCleApiController } from "../controllers/prets.controller.js";
 
 const router = Router();
+
+router.post("/", ajouterUserController);
+router.get("/cle", getCleApiController);
+
+export default router;

@@ -1,7 +1,7 @@
 import pool from "../db.js";
 
 /* Requête qui ajoute un prêts dans la base de donnée */
-export async function ajouterPrêt() {
+export async function ajouterPrêtModel() {
     const requete = `
     INSERT INTO prets ( livre_id, emprunteur, date_retour )
     VALUES ( livre_id = $1, emprunteur = $2, date_retour = $3 )
@@ -23,7 +23,7 @@ export async function ajouterPrêt() {
 }
 
 /* Requête qui modifie le prêts avec tous ses paramètres */
-export async function modifierLivre(id, data) {
+export async function modifierLivreModel(id, data) {
     const requete = `
     UPDATE prets
     SET 
@@ -50,7 +50,7 @@ export async function modifierLivre(id, data) {
 }
 
 /* Requête qui supprime un prêt de la base de donnée */
-export async function supprimerLivre(id) {
+export async function supprimerLivreModel(id) {
     const requete = `
         DELETE FROM prets
         WHERE id = $1

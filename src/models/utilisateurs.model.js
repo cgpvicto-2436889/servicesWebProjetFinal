@@ -1,7 +1,7 @@
 import pool from "../db.js";
 
 /* Requête qui ajoute un utilisateur dans la base de donnée */
-export async function ajouterUtilisateur(data) {
+export async function ajouterUtilisateurModel(data) {
     const mot_de_passe_hash = await bcrypt.hash(req.body.password, costFactor);
     const cle_api = crypto.randomUUID();
         
@@ -27,7 +27,7 @@ export async function ajouterUtilisateur(data) {
     }
 }
 
-export async function recupererCleApi(courriel) {
+export async function recupererCleApiModel(courriel) {
     const requete = `
         SELECT cle_api
         FROM bibliotheque
@@ -43,7 +43,7 @@ export async function recupererCleApi(courriel) {
     }
 }
 
-export async function modifierCleApi(id) {
+export async function modifierCleApiModel(id) {
     const cle_api = genererCleApi();
 
     const requete = `

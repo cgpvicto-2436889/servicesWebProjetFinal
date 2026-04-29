@@ -1,9 +1,9 @@
-import { getLivresDisponibles, getLivres, getInfosLivre, ajouterLivre, modifierLivre, modifierStatutLivre, supprimerLivre } from '../models/livres.model.js';
+import { getLivresDisponiblesModel, getLivresModel, getInfosLivreModel, ajouterLivreModel, modifierLivreModel, modifierStatutLivreModel, supprimerLivreModel } from '../models/livres.model.js';
 
 /* Éxécute les requête pour avoir tous les livres qui sont disponibles ou tous les livres selon */
-export const getLivresDisponibles = async (req, res) => {
+export async function getLivresDisponiblesController(req, res) {
     try {
-        let livres;
+        const livres;
 
         if (req.query.tous === 'true') {
             livres = await getLivres();
@@ -18,10 +18,10 @@ export const getLivresDisponibles = async (req, res) => {
 };
 
 /* Éxecute la requête pour avoir les infos d'un livre */
-export async function getInfosLivre(req, res) {
+export async function getInfosLivreController(req, res) {
     try {
         const id = req.params.id;
-        const livre = await getInfosLivre(id);
+        const livre = await getInfosLivreModel(id);
 
         if (!livre) {
             return res.status(404).json({ message: "Livre introuvable" });
@@ -34,9 +34,9 @@ export async function getInfosLivre(req, res) {
 }
 
 /* Éxecute la requête pour ajouter un livre */
-export async function ajouterLivre(req, res) {
+export async function ajouterLivreController(req, res) {
     try {
-        const livre = await ajouterLivre(req.body);
+        const livre = await ajouterLivreModel(req.body);
 
         res.status(201).json(livre);
     } catch (erreur) {
@@ -45,10 +45,10 @@ export async function ajouterLivre(req, res) {
 }
 
 /* Éxecute la requête pour modifier un livre */
-export async function modifierLivre(req, res) {
+export async function modifierLivreController(req, res) {
     try {
         const id = req.params.id;
-        const livre = await modifierLivre(id, req.body);
+        const livre = await modifierLivreModel(id, req.body);
 
         if (!livre) {
             return res.status(404).json({ message: "Livre introuvable" });
@@ -61,7 +61,7 @@ export async function modifierLivre(req, res) {
 }
 
 /* Éxecute la requête pour changer le status d'un livre selon le paramètre choisie */
-export async function modifierStatutLivre(req, res) {
+export async function modifierStatutLivreController(req, res) {
     try {
         const id = req.params.id;
         const disponible = req.body.disponible;
@@ -79,10 +79,10 @@ export async function modifierStatutLivre(req, res) {
 }
 
 /* Éxecute la requête pour supprimer un livre */
-export async function supprimerLivre(req, res) {
+export async function supprimerLivreController(req, res) {
     try {
         const id = req.params.id;
-        const livre = await supprimerLivre(id);
+        const livre = await supprimerLivreModel(id);
 
         if (!livre) {
             return res.status(404).json({ message: "Livre introuvable" });

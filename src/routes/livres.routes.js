@@ -1,12 +1,12 @@
 import express from "express";
-import { getLivresDisponibles, getInfosLivre, ajouterLivre, modifierLivre, modifierStatutLivre, supprimerLivre } from "../controllers/livres.controller.js";
+import { getLivresDisponiblesController, getInfosLivreController, ajouterLivreController, modifierLivreController, modifierStatutLivreController, supprimerLivreController } from "../controllers/livres.controller.js";
 
 const router = express.Router();
 
-router.get('/', getLivresDisponibles);
-router.get('/:id', getInfosLivre);
-router.post('/', ajouterLivre);
-router.put('/:id', modifierLivre);
-router.patch('/:id/status', modifierStatutLivre)
-router.delete('/:id', supprimerLivre);
+router.get('/', getLivresDisponiblesController);
+router.get('/:id', getInfosLivreController);
+router.post('/', ajouterLivreController);
+router.put('/:id', modifierLivreController);
+router.patch('/:id/status', modifierStatutLivreController)
+router.delete('/:id', supprimerLivreController);
 export default router;
