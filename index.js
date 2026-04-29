@@ -15,8 +15,10 @@ app.use(express.json());
 
 app.use('/api/livres', authentification, livresRoutes);
 app.use('/api/prets', authentification, pretsRoutes);
-app.use('/api/utilisateurs', authentification, utilisateursRoutes)
+app.use('/api/utilisateurs', utilisateursRoutes)
 
-app.listen(3000, () => {
-    console.log('Serveur démarré sur le port 3000');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Serveur démarré sur le port ${PORT}`);
 });
