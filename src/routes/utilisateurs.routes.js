@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ajouterUtilisateurController, recupererCleApiController, modifierCleApiController } from "../controllers/prets.controller.js";
+import { ajouterUtilisateurController, recupererCleApiController, modifierCleApiController } from "../controllers/utilisateurs.controller.js";
 
 const router = Router();
 
