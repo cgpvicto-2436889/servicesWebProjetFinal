@@ -1,7 +1,7 @@
 import express from 'express';
-import livresRoutes from "./routes/livres.routes.js";
-import pretsRoutes from "./routes/prets.routes.js";
-import utilisateursRoutes from "./routes/utilisateurs.routes.js";
+import livresRoutes from "./src/routes/livres.routes.js";
+import pretsRoutes from "./src/routes/prets.routes.js";
+import utilisateursRoutes from "./src/routes/utilisateurs.routes.js";
 /* Viens du site du cours */
 import authentification from './middlewares/authentification.middleware.js';
 
