@@ -1,4 +1,4 @@
-import pool from "../db.js";
+import pool from '../config/db_pg.js';
 
 /* Requête qui ajoute un utilisateur dans la base de donnée */
 export async function ajouterUtilisateurModel(data) {
