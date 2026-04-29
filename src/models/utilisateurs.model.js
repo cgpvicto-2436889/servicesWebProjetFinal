@@ -1,12 +1,15 @@
 import pool from '../config/db_pg.js';
+import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 
-/* Requête qui ajoute un utilisateur dans la base de donnée */
+const costFactor = 10;
+
 export async function ajouterUtilisateurModel(data) {
-    const mot_de_passe_hash = await bcrypt.hash(req.body.password, costFactor);
+    const mot_de_passe_hash = await bcrypt.hash(data.mot_de_passe, costFactor);
     const cle_api = crypto.randomUUID();
-        
+
     const requete = `
-        INSERT INTO bibliotheque (nom, courriel, cle_api, password)
+        INSERT INTO utilisateurs (nom, courriel, mot_de_passe, cle_api)
         VALUES ($1, $2, $3, $4)
         RETURNING cle_api
     `;
@@ -14,40 +17,28 @@ export async function ajouterUtilisateurModel(data) {
     const parametres = [
         data.nom,
         data.courriel,
-        cle_api,
-        mot_de_passe_hash
+        mot_de_passe_hash,
+        cle_api
     ];
 
-    try {
-        const resultat = await pool.query(requete, parametres);
-        return resultat.rows[0];
-    } catch (erreur) {
-        console.error(`Erreur ${erreur.code} : ${erreur.message}`);
-        throw erreur;
-    }
+    const resultat = await pool.query(requete, parametres);
+    return resultat.rows[0];
 }
 
 export async function recupererCleApiModel(courriel) {
     const requete = `
-        SELECT cle_api
-        FROM bibliotheque
+        SELECT id, cle_api, mot_de_passe
+        FROM utilisateurs
         WHERE courriel = $1
     `;
 
-    try {
-        const resultat = await pool.query(requete, courriel);
-        return resultat.rows[0];
-    } catch (erreur) {
-        console.error(`Erreur ${erreur.code} : ${erreur.message}`);
-        throw erreur;
-    }
+    const resultat = await pool.query(requete, [courriel]);
+    return resultat.rows[0];
 }
 
-export async function modifierCleApiModel(id) {
-    const cle_api = genererCleApi();
-
+export async function modifierCleApiModel(id, cle_api) {
     const requete = `
-        UPDATE bibliotheque
+        UPDATE utilisateurs
         SET cle_api = $1
         WHERE id = $2
         RETURNING cle_api
@@ -55,11 +46,17 @@ export async function modifierCleApiModel(id) {
 
     const parametres = [cle_api, id];
 
-    try {
-        const resultat = await pool.query(requete, parametres);
-        return resultat.rows[0];
-    } catch (erreur) {
-        console.error(`Erreur ${erreur.code} : ${erreur.message}`);
-        throw erreur;
-    }
+    const resultat = await pool.query(requete, parametres);
+    return resultat.rows[0];
+}
+
+export async function validationCle(cle_api) {
+    const requete = `
+        SELECT id
+        FROM utilisateurs
+        WHERE cle_api = $1
+    `;
+
+    const resultat = await pool.query(requete, [cle_api]);
+    return resultat.rows.length > 0;
 }
