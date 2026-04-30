@@ -2,7 +2,7 @@ import { ajouterUtilisateurModel, recupererCleApiModel, modifierCleApiModel } fr
 
 export async function ajouterUtilisateurController(req, res) {
     try {
-        if (!req.body.nom || !req.body.courriel || !req.body.mot_de_passe) {
+        if (!req.body.nom || !req.body.courriel || !req.body.password) {
             return res.status(400).json({ message: "Tous les champs sont obligatoires" });
         }
 
@@ -16,9 +16,9 @@ export async function ajouterUtilisateurController(req, res) {
 export async function recupererCleApiController(req, res) {
     try {
         const courriel = req.body.courriel;
-        const mot_de_passe = req.body.mot_de_passe;
+        const password = req.body.password;
 
-        if (!courriel || !mot_de_passe) {
+        if (!courriel || !password) {
             return res.status(400).json({ message: "Courriel et mot de passe obligatoires" });
         }
 
@@ -28,7 +28,7 @@ export async function recupererCleApiController(req, res) {
             return res.status(401).json({ message: "Courriel ou mot de passe invalide" });
         }
 
-        const motDePasseValide = await bcrypt.compare(mot_de_passe, utilisateurs.password);
+        const motDePasseValide = await bcrypt.compare(password, utilisateurs.password);
 
         if (motDePasseValide) {
             // Mot de passe correct
@@ -48,9 +48,9 @@ export async function recupererCleApiController(req, res) {
 export async function modifierCleApiController(req, res) {
     try {
         const courriel = req.body.courriel;
-        const mot_de_passe = req.body.mot_de_passe;
+        const password = req.body.password;
 
-        if (!courriel || !mot_de_passe) { return res.status(400).json({message: "Courriel et mot de passe obligatoires"}); }
+        if (!courriel || !password) { return res.status(400).json({message: "Courriel et mot de passe obligatoires"}); }
 
         const utilisateurs = await recupererCleApiModel(courriel);
 
@@ -58,7 +58,7 @@ export async function modifierCleApiController(req, res) {
             return res.status(401).json({message: "Courriel ou mot de passe invalide"});
         }
 
-        const motDePasseValide = await bcrypt.compare( mot_de_passe, utilisateurs.password );
+        const motDePasseValide = await bcrypt.compare( password, utilisateurs.password );
 
         if (motDePasseValide) {
             // Mot de passe correct
