@@ -4,21 +4,17 @@ import pg from 'pg'
 import dotenv from 'dotenv';
 dotenv.config();
 
-console.log("--- TEST DE CONNEXION ---");
-console.log("DB_USER:", process.env.PG_USER);
-console.log("DB_HOST:", process.env.PG_HOST);
-console.log("DB_PASS:", process.env.PG_PASSWORD ? "REÇU" : "VIDE");
-console.log("DB_SSL:", process.env.PG_SSL);
-console.log("-------------------------");
-
 let params = { 
-  database: process.env.PG_DATABASE,  
+  user: process.env.PG_USER,
   host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
   password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
-  user: process.env.PG_USER
+  port: process.env.PG_PORT
 }
 
+// SSL est desactivé par default, mais on peut l'activer en ajoutant PG_SSL=true 
+//   dans le .env
+// Nécessaire pour se connecter à la BD PostgreSQL sur render.com de l'extérieur
 if (process.env.PG_SSL) {
   params.ssl = {
     rejectUnauthorized: false
