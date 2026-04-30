@@ -9,7 +9,7 @@ export async function ajouterUtilisateurModel(data) {
     const cle_api = crypto.randomUUID();
 
     const requete = `
-        INSERT INTO utilisateurs (nom, courriel, password, cle_api)
+        INSERT INTO bibliotheque (nom, courriel, password, cle_api)
         VALUES ($1, $2, $3, $4)
         RETURNING cle_api
     `;
@@ -28,7 +28,7 @@ export async function ajouterUtilisateurModel(data) {
 export async function recupererCleApiModel(courriel) {
     const requete = `
         SELECT id, cle_api, password
-        FROM utilisateurs
+        FROM bibliotheque
         WHERE courriel = $1
     `;
 
@@ -38,7 +38,7 @@ export async function recupererCleApiModel(courriel) {
 
 export async function modifierCleApiModel(id, cle_api) {
     const requete = `
-        UPDATE utilisateurs
+        UPDATE bibliotheque
         SET cle_api = $1
         WHERE id = $2
         RETURNING cle_api
@@ -53,7 +53,7 @@ export async function modifierCleApiModel(id, cle_api) {
 export async function validationCle(cle_api) {
     const requete = `
         SELECT id
-        FROM utilisateurs
+        FROM bibliotheque
         WHERE cle_api = $1
     `;
 
