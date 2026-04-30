@@ -13,7 +13,7 @@ export async function ajouterUtilisateurController(req, res) {
         return res.status(201).json({cle_api: utilisateur.cle_api});
 
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        return res.status(500).json({ message: "Erreur serveur" });
     }
 }
 
@@ -36,16 +36,16 @@ export async function recupererCleApiController(req, res) {
 
         if (motDePasseValide) {
             // Mot de passe correct
-            res.status(200).json({ message: "Connexion réussie" });
+            return res.status(200).json({ message: "Connexion réussie" });
         } else {
             // Mot de passe incorrect
-            res.status(401).json({ message: "Courriel ou mot de passe invalide" });
+            return res.status(401).json({ message: "Courriel ou mot de passe invalide" });
         }
         
-        res.status(200).json({ cle_api: utilisateurs.cle_api });
+        return res.status(200).json({ cle_api: utilisateurs.cle_api });
 
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        return res.status(500).json({ message: "Erreur serveur" });
     }
 }
 
@@ -66,10 +66,10 @@ export async function modifierCleApiController(req, res) {
 
         if (motDePasseValide) {
             // Mot de passe correct
-            res.status(200).json({ message: "Connexion réussie" });
+            return res.status(200).json({ message: "Connexion réussie" });
         } else {
             // Mot de passe incorrect
-            res.status(401).json({ message: "Courriel ou mot de passe invalide" });
+            return res.status(401).json({ message: "Courriel ou mot de passe invalide" });
         }
 
         const nouvelleCle = crypto.randomUUID();
