@@ -13,7 +13,7 @@ export async function ajouterUtilisateurController(req, res) {
         return res.status(201).json({cle_api: utilisateur.cle_api});
 
     } catch (erreur) {
-        return res.status(500).json({ message: "Erreur serveur" });
+        return res.status(500).json({ message: erreur.message });
     }
 }
 
@@ -45,7 +45,7 @@ export async function recupererCleApiController(req, res) {
         return res.status(200).json({ cle_api: utilisateurs.cle_api });
 
     } catch (erreur) {
-        return res.status(500).json({ message: "Erreur serveur" });
+        return res.status(500).json({ message: erreur.message });
     }
 }
 
@@ -81,6 +81,6 @@ export async function modifierCleApiController(req, res) {
         });
 
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        res.status(500).json({ message: erreur.message });
     }
 }
