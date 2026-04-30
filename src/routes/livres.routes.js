@@ -3,10 +3,10 @@ import { getLivresDisponiblesController, getInfosLivreController, ajouterLivreCo
 
 const router = express.Router();
 
-router.get('/', getLivresDisponiblesController);
-router.get('/:id', getInfosLivreController);
-router.post('/', ajouterLivreController);
-router.put('/:id', modifierLivreController);
-router.patch('/:id/status', modifierStatutLivreController)
-router.delete('/:id', supprimerLivreController);
+router.get('/getLivres', getLivresDisponiblesController);
+router.get('/getInfosLivre:id', getInfosLivreController);
+router.post('/ajouterLivre', ajouterLivreController);
+router.put('/modifierLivre:id', modifierLivreController);
+router.patch('/modifierStatusLivre:id/status', modifierStatutLivreController)
+router.delete('/supprimerLivre:id', supprimerLivreController);
 export default router;
