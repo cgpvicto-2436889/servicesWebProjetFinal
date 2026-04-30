@@ -12,7 +12,7 @@ export async function getLivresDisponiblesController(req, res) {
 
         res.status(200).json(livres);
     } catch (erreur) {
-        res.status(500).json({ message: 'Erreur lors de la récupération des livres' });
+        res.status(500).json({ message: erreur.message });
     }
 };
 
@@ -28,7 +28,7 @@ export async function getInfosLivreController(req, res) {
 
         res.status(200).json(livre);
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        res.status(500).json({ message: erreur.message });
     }
 }
 
@@ -39,7 +39,7 @@ export async function ajouterLivreController(req, res) {
 
         res.status(201).json(livre);
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        res.status(500).json({ message: erreur.message });
     }
 }
 
@@ -55,7 +55,7 @@ export async function modifierLivreController(req, res) {
 
         res.status(200).json(livre);
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        res.status(500).json({ message: erreur.message });
     }
 }
 
@@ -73,7 +73,7 @@ export async function modifierStatutLivreController(req, res) {
 
         res.status(200).json(livre);
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        res.status(500).json({ message: erreur.message });
     }
 }
 
@@ -87,8 +87,8 @@ export async function supprimerLivreController(req, res) {
             return res.status(404).json({ message: "Livre introuvable" });
         }
 
-        res.status(200).json({ message: "Livre supprimé" });
+        res.status(200).json({ message: "allo les caca" });
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        res.status(500).json({ message: erreur.message });
     }
 }
