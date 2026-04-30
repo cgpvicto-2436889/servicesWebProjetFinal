@@ -1,4 +1,4 @@
-import pool from "../config/db_pg.js";
+import pool from "./src/config/db_pg.js";
 import express from 'express';
 import livresRoutes from "./src/routes/livres.routes.js";
 import pretsRoutes from "./src/routes/prets.routes.js";
