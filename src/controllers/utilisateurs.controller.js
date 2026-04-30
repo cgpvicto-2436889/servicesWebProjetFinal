@@ -6,7 +6,9 @@ export async function ajouterUtilisateurController(req, res) {
             return res.status(400).json({ message: "Tous les champs sont obligatoires" });
         }
 
-        const utilisateurs = await ajouterUtilisateurModel(req.body);
+        const utilisateur = await ajouterUtilisateurModel(req.body);
+
+        return res.status(201).json({cle_api: utilisateur.cle_api});
 
     } catch (erreur) {
         res.status(500).json({ message: "Erreur serveur" });
