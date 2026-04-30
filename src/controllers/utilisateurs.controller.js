@@ -1,3 +1,5 @@
+import bcrypt from "bcrypt";
+import crypto from "crypto";
 import { ajouterUtilisateurModel, recupererCleApiModel, modifierCleApiModel } from "../models/utilisateurs.model.js";
 
 export async function ajouterUtilisateurController(req, res) {
