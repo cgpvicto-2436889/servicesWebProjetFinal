@@ -5,11 +5,11 @@ import crypto from 'crypto';
 const costFactor = 10;
 
 export async function ajouterUtilisateurModel(data) {
-    const mot_de_passe_hash = await bcrypt.hash(data.mot_de_passe, costFactor);
+    const password_hash = await bcrypt.hash(data.password, costFactor);
     const cle_api = crypto.randomUUID();
 
     const requete = `
-        INSERT INTO utilisateurs (nom, courriel, mot_de_passe, cle_api)
+        INSERT INTO utilisateurs (nom, courriel, password, cle_api)
         VALUES ($1, $2, $3, $4)
         RETURNING cle_api
     `;
@@ -17,7 +17,7 @@ export async function ajouterUtilisateurModel(data) {
     const parametres = [
         data.nom,
         data.courriel,
-        mot_de_passe_hash,
+        password_hash,
         cle_api
     ];
 
@@ -27,7 +27,7 @@ export async function ajouterUtilisateurModel(data) {
 
 export async function recupererCleApiModel(courriel) {
     const requete = `
-        SELECT id, cle_api, mot_de_passe
+        SELECT id, cle_api, password
         FROM utilisateurs
         WHERE courriel = $1
     `;
