@@ -5,7 +5,7 @@ export async function getLivresDisponiblesController(req, res) {
     try {
 
         if (req.query.tous === 'true') {
-            const livres = await getLivres();
+            const livres = await getLivresModel();
         } else {
             const livres = await getLivresDisponiblesModel();
         }
