@@ -63,7 +63,7 @@ export async function getInfosLivreModel(id) {
 export async function ajouterLivreModel(data) {
     const requete = `
     INSERT INTO livres ( bibliotheque_id, titre, auteur, isbn, date_ajout, disponible )
-    VALUES ( $1, $2, $3, $4, $5 true )
+    VALUES ( $1, $2, $3, $4, $5, true )
     RETURNING *
     `;
 
