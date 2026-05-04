@@ -3,7 +3,7 @@ import { getLivresDisponiblesModel, getLivresModel, getInfosLivreModel, ajouterL
 /* Éxécute les requête pour avoir tous les livres qui sont disponibles ou tous les livres selon */
 export async function getLivresDisponiblesController(req, res) {
     try {
-        const livres;
+        let livres;
 
         if (req.query.tous === 'true') {
             livres = await getLivresModel();
@@ -66,7 +66,7 @@ export async function modifierStatutLivreController(req, res) {
         const id = req.params.id;
         const disponible = req.body.disponible;
 
-        const livre = await modifierStatutLivre(id, disponible);
+        const livre = await modifierStatutLivreModel(id, disponible);
 
         if (!livre) {
             return res.status(404).json({ message: "Livre introuvable" });
