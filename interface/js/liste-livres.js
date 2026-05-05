@@ -1,12 +1,28 @@
 let checkbox = document.getElementById("afficher-tous");
 const cleApi = "";
 
-if (!checkbox.checked) {
-    document.addEventListener("DOMContentLoaded", afficherLivresDisponible);
-}
-if (checkbox.checked) {
-    document.addEventListener("DOMContentLoaded", afficherLivres);
-}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const checkbox = document.getElementById("afficher-tous");
+
+    if (!checkbox.checked) {
+        afficherLivresDisponible();
+    }
+
+    if (checkbox.checked) {
+        afficherLivres();
+    }
+
+    checkbox.addEventListener("change", () => {
+        if (!checkbox.checked) {
+            afficherLivresDisponible();
+        }
+
+        if (checkbox.checked) {
+            afficherLivres();
+        }
+    });
+});
 
 
 
@@ -21,6 +37,17 @@ async function afficherLivresDisponible() {
         listeLivres.innerHTML = "";
 
         resultat.forEach((livre) => {
+        let statutClass;
+        let statutTexte;
+
+        if (livre.disponible) {
+            statutClass = "disponible";
+            statutTexte = "Disponible";
+        } else {
+            statutClass = "emprunte";
+            statutTexte = "Emprunté";
+        }
+
             const carte = document.createElement("article");
             carte.classList.add("carte-livre");
 
@@ -28,8 +55,8 @@ async function afficherLivresDisponible() {
                 <h3>${livre.titre}</h3>
                 <p><strong>Auteur :</strong> ${livre.auteur}</p>
                 <p><strong>ISBN :</strong> ${livre.isbn}</p>
-                <span class="statut ${livre.disponible}">
-                    ${livre.disponible}
+                <span class="statut ${statutClass}">
+                    ${statutTexte}
                 </span>
             `;
 
@@ -52,6 +79,17 @@ async function afficherLivres() {
         listeLivres.innerHTML = "";
 
         resultat.forEach((livre) => {
+        let statutClass;
+        let statutTexte;
+
+        if (livre.disponible) {
+            statutClass = "disponible";
+            statutTexte = "Disponible";
+        } else {
+            statutClass = "emprunte";
+            statutTexte = "Emprunté";
+        }
+
             const carte = document.createElement("article");
             carte.classList.add("carte-livre");
 
@@ -59,8 +97,8 @@ async function afficherLivres() {
                 <h3>${livre.titre}</h3>
                 <p><strong>Auteur :</strong> ${livre.auteur}</p>
                 <p><strong>ISBN :</strong> ${livre.isbn}</p>
-                <span class="statut ${livre.disponible}">
-                    ${livre.disponible}
+                <span class="statut ${statutClass}">
+                    ${statutTexte}
                 </span>
             `;
 
