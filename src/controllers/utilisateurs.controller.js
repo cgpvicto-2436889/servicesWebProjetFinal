@@ -36,14 +36,11 @@ export async function recupererCleApiController(req, res) {
 
         if (motDePasseValide) {
             // Mot de passe correct
-            return res.status(200).json({ message: "Connexion réussie" });
+            return res.status(200).json({ cle_api: utilisateurs.cle_api });
         } else {
             // Mot de passe incorrect
             return res.status(401).json({ message: "Courriel ou mot de passe invalide" });
         }
-        
-        return res.status(200).json({ cle_api: utilisateurs.cle_api });
-
     } catch (erreur) {
         return res.status(500).json({ message: erreur.message });
     }
