@@ -3,7 +3,7 @@ import { getLivresDisponiblesModel, getLivresModel, getInfosLivreModel, ajouterL
 /* Éxécute les requête pour avoir tous les livres qui sont disponibles */
 export async function getLivresDisponiblesController(req, res) {
     try {
-        const livres;
+        let livres;
         livres = await getLivresDisponiblesModel();
 
         res.status(200).json(livres);
@@ -15,7 +15,7 @@ export async function getLivresDisponiblesController(req, res) {
 /* Éxécute les requête pour avoir tous les livres */
 export async function getLivresController(req, res) {
     try {
-        const livres;
+        let livres;
 
         livres = await getLivresModel();
 
