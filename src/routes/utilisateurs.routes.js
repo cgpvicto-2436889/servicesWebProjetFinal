@@ -4,7 +4,7 @@ import { ajouterUtilisateurController, recupererCleApiController, modifierCleApi
 const router = Router();
 
 router.post("/ajouterUtilisateur", ajouterUtilisateurController);
-router.get("/recupererCleApi", recupererCleApiController);
+router.post("/recupererCleApi", recupererCleApiController);
 router.patch("/modifierCleApi", modifierCleApiController);
 
 export default router;
