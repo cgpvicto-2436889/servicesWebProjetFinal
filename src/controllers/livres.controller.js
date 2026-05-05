@@ -39,6 +39,7 @@ export async function ajouterLivreController(req, res) {
         const livre = await ajouterLivreModel(req.body);
 
         res.status(201).json(livre);
+        message: "Livre ajouté avec succès"
     } catch (erreur) {
         res.status(500).json({ message: erreur.message });
     }

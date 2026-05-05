@@ -1,4 +1,5 @@
 import pool from "./src/config/db_pg.js";
+import cors from "cors";
 import express from 'express';
 import livresRoutes from "./src/routes/livres.routes.js";
 import pretsRoutes from "./src/routes/prets.routes.js";
@@ -8,6 +9,9 @@ import authentification from './src/middlewares/authentification.middleware.js';
 
 const app = express();
 
+app.use(express.json());
+
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/livres', livresRoutes);

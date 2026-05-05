@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <title>Bibliothèque - Utilisateur</title>
+    <link rel="stylesheet" href="../css/gestion-utilisateurs.css">
+</head>
+<body>
+    <header class="menu-principal">
+        <div class="logo">
+            <h1>Bibliothèque</h1>
+        </div>
+
+        <nav class="navigation">
+            <a href="index.html">Accueil</a>
+            <a href="liste-Livres.html">Livres</a>
+            <a href="#">Prêts</a>
+            <a href="#">Contact</a>
+        </nav>
+
+        <div class="actions-compte">
+            <a href="gestion-utilisateurs.html" class="bouton-secondaire">Créer un compte</a>
+            <a href="connexion.html" class="bouton-principal">Connexion</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="carte">
+            <div class="entete">
+                <p class="petit-titre">Gestion de bibliothèque</p>
+                <h1>Clé API</h1>
+                <p>Créer un utilisateur, récupérer une clé API ou en générer une nouvelle.</p>
+            </div>
+
+            <div class="contenu">
+                <section class="bloc">
+                    <h2>Créer un utilisateur</h2>
+
+                    <form id="form-ajouter-utilisateur">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" placeholder="Nom de la bibliothèque">
+
+                        <label for="courriel-ajout">Courriel</label>
+                        <input type="email" id="courriel-ajout" name="courriel" placeholder="exemple@courriel.com">
+
+                        <label for="password-ajout">Mot de passe</label>
+                        <input type="password" id="password-ajout" name="password" placeholder="Mot de passe">
+
+                        <button type="submit">Créer l’utilisateur</button>
+                    </form>
+                </section>
+
+                <section class="bloc">
+                    <h2>Récupérer la clé API</h2>
+
+                    <form id="form-recuperer-cle">
+                        <label for="courriel-recuperer">Courriel</label>
+                        <input type="email" id="courriel-recuperer" name="courriel" placeholder="exemple@courriel.com">
+
+                        <label for="password-recuperer">Mot de passe</label>
+                        <input type="password" id="password-recuperer" name="password" placeholder="Mot de passe">
+
+                        <button type="submit">Récupérer la clé</button>
+                    </form>
+                </section>
+
+                <section class="bloc bloc-large">
+                    <h2>Régénérer une nouvelle clé API</h2>
+
+                    <form id="form-modifier-cle">
+                        <label for="courriel-modifier">Courriel</label>
+                        <input type="email" id="courriel-modifier" name="courriel" placeholder="exemple@courriel.com">
+
+                        <label for="password-modifier">Mot de passe</label>
+                        <input type="password" id="password-modifier" name="password" placeholder="Mot de passe">
+
+                        <button type="submit">Générer une nouvelle clé</button>
+                    </form>
+                </section>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

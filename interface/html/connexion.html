@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion - Bibliothèque</title>
+    <link rel="stylesheet" href="../css/connexion.css">
+</head>
+<body>
+    <header class="menu-principal">
+        <div class="logo">
+            <h1>Bibliothèque</h1>
+        </div>
+
+        <nav class="navigation">
+            <a href="index.html">Accueil</a>
+            <a href="liste-Livres.html">Livres</a>
+            <a href="#">Prêts</a>
+            <a href="#">Contact</a>
+        </nav>
+
+        <div class="actions-compte">
+            <a href="gestion-utilisateurs.html" class="bouton-secondaire">Créer un compte</a>
+            <a href="connexion.html" class="bouton-principal">Connexion</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <section class="carte-connexion">
+            <div class="image-bibliotheque">
+                <div class="texte-image">
+                    <p>Bibliothèque</p>
+                    <h1>Connexion</h1>
+                </div>
+            </div>
+
+            <div class="zone-formulaire">
+                <p class="petit-titre">Accès utilisateur</p>
+                <h2>Se connecter</h2>
+                <p class="description">Connecte-toi pour accéder à ta clé API et gérer ta bibliothèque.</p>
+
+                <form id="form-connexion">
+                    <label for="courriel">Courriel</label>
+                    <input type="email" id="courriel" name="courriel" placeholder="exemple@courriel.com">
+
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" placeholder="Mot de passe">
+
+                    <button type="submit">Connexion</button>
+                </form>
+
+                <p>Pas encore de compte ? <a href="gestion-utilisateurs.html">Créer un compte</a></p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #3b2f2f, #7b5e3b);
+    color: #2d2118;
+}
+
+/* ===== MENU ===== */
+
+.menu-principal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: #5a3825;
+    color: #fff8ec;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 26px;
+    color: #f3d7a1;
+}
+
+.navigation {
+    display: flex;
+    gap: 25px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #fff8ec;
+    font-weight: bold;
+    position: relative;
+}
+
+.navigation a:hover {
+    color: #e8cfa7;
+}
+
+.actions-compte {
+    display: flex;
+    gap: 10px;
+}
+
+.bouton-principal {
+    background: #f3d7a1;
+    color: #4b2b19;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bouton-principal:hover {
+    background: #e2bf85;
+}
+
+.bouton-secondaire {
+    border: 1px solid #f3d7a1;
+    color: #f3d7a1;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.bouton-secondaire:hover {
+    background: #f3d7a1;
+    color: #4b2b19;
+}
+
+/* ===== PAGE ===== */
+
+.page {
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ===== ENTÊTE ===== */
+
+.entete-page {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #fff8ec;
+}
+
+.petit-titre {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 13px;
+    color: #e8cfa7;
+}
+
+.entete-page h2 {
+    margin: 10px 0;
+    font-size: 36px;
+}
+
+.entete-page p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* ===== LIVRES ===== */
+
+.zone-livres {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.carte-livre {
+    background: #fffaf1;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #dec9a8;
+    box-shadow: 0 10px 25px rgba(70, 45, 25, 0.15);
+    transition: transform 0.2s ease;
+}
+
+.carte-livre:hover {
+    transform: translateY(-5px);
+}
+
+.carte-livre h3 {
+    margin-top: 0;
+    color: #5a3825;
+}
+
+.carte-livre p {
+    margin: 5px 0;
+}
+
+/* ===== STATUT ===== */
+
+.statut {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.disponible {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.emprunte {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 800px) {
+    .menu-principal {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .navigation {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
