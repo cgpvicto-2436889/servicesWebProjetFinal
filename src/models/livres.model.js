@@ -3,12 +3,12 @@ import pool from '../config/db_pg.js';
 /* Requête qui selectionne tous les livres qui sont disponibles */
 export async function getLivresDisponiblesModel() {
     const requete = `
-        SELECT titre, auteur
+        SELECT titre, auteur, isbn
         FROM livres
         WHERE disponible = $1
         ORDER BY id
     `;
-    const parametres = [true];
+    const parametres = [false];
 
     try {
         const resultat = await pool.query(requete, parametres);
