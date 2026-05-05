@@ -8,7 +8,7 @@ export async function getLivresDisponiblesModel() {
         WHERE disponible = $1
         ORDER BY id
     `;
-    const parametres = [false];
+    const parametres = [true];
 
     try {
         const resultat = await pool.query(requete, parametres);
@@ -22,7 +22,7 @@ export async function getLivresDisponiblesModel() {
 /* Requête qui selectionne tous les livres de la bibliothèque quand selectionner avec un option */
 export async function getLivresModel() {
     const requete = `
-        SELECT titre, auteur
+        SELECT titre, auteur, isbn
         FROM livres
         ORDER BY id
     `;

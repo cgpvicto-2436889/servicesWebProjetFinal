@@ -1,15 +1,23 @@
 import { getLivresDisponiblesModel, getLivresModel, getInfosLivreModel, ajouterLivreModel, modifierLivreModel, modifierStatutLivreModel, supprimerLivreModel } from '../models/livres.model.js';
 
-/* Éxécute les requête pour avoir tous les livres qui sont disponibles ou tous les livres selon */
+/* Éxécute les requête pour avoir tous les livres qui sont disponibles */
 export async function getLivresDisponiblesController(req, res) {
     try {
-        let livres;
+        const livres;
+        livres = await getLivresDisponiblesModel();
 
-        if (req.query.tous === 'true') {
-            livres = await getLivresModel();
-        } else {
-            livres = await getLivresDisponiblesModel();
-        }
+        res.status(200).json(livres);
+    } catch (erreur) {
+        res.status(500).json({ message: erreur.message });
+    }
+};
+
+/* Éxécute les requête pour avoir tous les livres */
+export async function getLivresController(req, res) {
+    try {
+        const livres;
+
+        livres = await getLivresModel();
 
         res.status(200).json(livres);
     } catch (erreur) {
