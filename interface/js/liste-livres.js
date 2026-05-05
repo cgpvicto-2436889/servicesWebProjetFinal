@@ -1,10 +1,10 @@
 let checkbox = document.getElementById("afficher-tous");
 const cleApi = "";
 
-if (checkbox.checked == "true") {
+if (!checkbox.checked) {
     document.addEventListener("DOMContentLoaded", afficherLivresDisponible);
 }
-if (checkbox.checked == "false") {
+if (checkbox.checked) {
     document.addEventListener("DOMContentLoaded", afficherLivres);
 }
 
@@ -28,7 +28,7 @@ async function afficherLivresDisponible() {
                 <h3>${livre.titre}</h3>
                 <p><strong>Auteur :</strong> ${livre.auteur}</p>
                 <p><strong>ISBN :</strong> ${livre.isbn}</p>
-                <span class="statut ${statutClass}">
+                <span class="statut ${livre.disponible}">
                     ${livre.disponible}
                 </span>
             `;
@@ -59,7 +59,7 @@ async function afficherLivres() {
                 <h3>${livre.titre}</h3>
                 <p><strong>Auteur :</strong> ${livre.auteur}</p>
                 <p><strong>ISBN :</strong> ${livre.isbn}</p>
-                <span class="statut ${statutClass}">
+                <span class="statut ${livre.disponible}">
                     ${livre.disponible}
                 </span>
             `;

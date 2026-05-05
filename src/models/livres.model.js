@@ -3,7 +3,7 @@ import pool from '../config/db_pg.js';
 /* Requête qui selectionne tous les livres qui sont disponibles */
 export async function getLivresDisponiblesModel() {
     const requete = `
-        SELECT titre, auteur, isbn
+        SELECT titre, auteur, isbn, disponible
         FROM livres
         WHERE disponible = $1
         ORDER BY id
@@ -22,7 +22,7 @@ export async function getLivresDisponiblesModel() {
 /* Requête qui selectionne tous les livres de la bibliothèque quand selectionner avec un option */
 export async function getLivresModel() {
     const requete = `
-        SELECT titre, auteur, isbn
+        SELECT titre, auteur, isbn, disponible
         FROM livres
         ORDER BY id
     `;
