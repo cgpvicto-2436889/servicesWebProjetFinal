@@ -1,12 +1,16 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "API Bibliothèque examen finale",
+    "title": "API Bibliothèque",
     "summary": "API pour gérer une bibliothèque",
     "description": "API permettant de gérer des livres, des utilisateurs et des clés API pour une bibliothèque.",
     "version": "1.0.0"
   },
   "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Serveur local"
+    },
     {
       "url": "https://serviceswebprojetfinal.onrender.com",
       "description": "Serveur Render"
@@ -45,7 +49,7 @@
           },
           "titre": {
             "type": "string",
-            "example": "livre exemple"
+            "example": "Le Petit Prince"
           },
           "auteur": {
             "type": "string",
