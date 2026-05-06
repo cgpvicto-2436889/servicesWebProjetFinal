@@ -1,0 +1,634 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Bibliothèque examen finale",
+    "summary": "API pour gérer une bibliothèque",
+    "description": "API permettant de gérer des livres, des utilisateurs et des clés API pour une bibliothèque.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://serviceswebprojetfinal.onrender.com",
+      "description": "Serveur Render"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Livres",
+      "description": "Routes pour gérer les livres"
+    },
+    {
+      "name": "Utilisateurs",
+      "description": "Routes pour gérer les utilisateurs et les clés API"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Clé API à envoyer dans l'entête Authorization"
+      }
+    },
+    "schemas": {
+      "Livre": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "bibliotheque_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "titre": {
+            "type": "string",
+            "example": "Le Petit Prince"
+          },
+          "auteur": {
+            "type": "string",
+            "example": "Antoine de Saint-Exupéry"
+          },
+          "isbn": {
+            "type": "string",
+            "example": "9782070612758"
+          },
+          "date_ajout": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-10"
+          },
+          "disponible": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "LivreAjout": {
+        "type": "object",
+        "required": [
+          "bibliotheque_id",
+          "titre",
+          "auteur",
+          "isbn",
+          "date_ajout",
+          "disponible"
+        ],
+        "properties": {
+          "bibliotheque_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "titre": {
+            "type": "string",
+            "example": "Le Petit Prince"
+          },
+          "auteur": {
+            "type": "string",
+            "example": "Antoine de Saint-Exupéry"
+          },
+          "isbn": {
+            "type": "string",
+            "example": "9782070612758"
+          },
+          "date_ajout": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-10"
+          },
+          "disponible": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "UtilisateurAjout": {
+        "type": "object",
+        "required": [
+          "nom",
+          "courriel",
+          "password"
+        ],
+        "properties": {
+          "nom": {
+            "type": "string",
+            "example": "Felix"
+          },
+          "courriel": {
+            "type": "string",
+            "example": "felix@test.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "1234"
+          }
+        }
+      },
+      "Connexion": {
+        "type": "object",
+        "required": [
+          "courriel",
+          "password"
+        ],
+        "properties": {
+          "courriel": {
+            "type": "string",
+            "example": "felix@test.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "1234"
+          }
+        }
+      },
+      "CleApi": {
+        "type": "object",
+        "properties": {
+          "cle_api": {
+            "type": "string",
+            "example": "816-3a5b-4534-8d44-7b44a0313d65"
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Livre introuvable"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/livres/getLivres": {
+      "get": {
+        "summary": "Récupérer tous les livres",
+        "description": "Retourne la liste des livres de la bibliothèque.",
+        "tags": [
+          "Livres"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des livres récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Livre"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/livres/getLivresDisponibles": {
+      "get": {
+        "summary": "Récupérer les livres disponibles",
+        "description": "Retourne seulement les livres disponibles.",
+        "tags": [
+          "Livres"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des livres disponibles récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Livre"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API absente ou invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/livres/getInfosLivre/{id}": {
+      "get": {
+        "summary": "Récupérer les informations d'un livre",
+        "description": "Retourne les informations d'un livre selon son identifiant.",
+        "tags": [
+          "Livres"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifiant du livre",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livre récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livre"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API absente ou invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/livres/ajouterLivre": {
+      "post": {
+        "summary": "Ajouter un livre",
+        "description": "Ajoute un nouveau livre dans la bibliothèque.",
+        "tags": [
+          "Livres"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LivreAjout"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Livre ajouté avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Livre ajouté avec succès"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API absente ou invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/livres/modifierLivre/{id}": {
+      "put": {
+        "summary": "Modifier un livre",
+        "description": "Modifie toutes les informations d'un livre selon son identifiant.",
+        "tags": [
+          "Livres"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifiant du livre à modifier",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LivreAjout"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Livre modifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livre"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable"
+          },
+          "401": {
+            "description": "Clé API absente ou invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/livres/modifierStatusLivre/{id}": {
+      "patch": {
+        "summary": "Modifier le statut d'un livre",
+        "description": "Modifie seulement le statut disponible ou emprunté d'un livre.",
+        "tags": [
+          "Livres"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifiant du livre",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "disponible"
+                ],
+                "properties": {
+                  "disponible": {
+                    "type": "boolean",
+                    "example": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Statut du livre modifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livre"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable"
+          },
+          "401": {
+            "description": "Clé API absente ou invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/livres/supprimerLivre/{id}": {
+      "delete": {
+        "summary": "Supprimer un livre",
+        "description": "Supprime un livre selon son identifiant.",
+        "tags": [
+          "Livres"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifiant du livre à supprimer",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livre supprimé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Livre supprimé"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable"
+          },
+          "401": {
+            "description": "Clé API absente ou invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/utilisateurs/ajouterUtilisateur": {
+      "post": {
+        "summary": "Ajouter un utilisateur",
+        "description": "Crée un utilisateur et retourne une clé API.",
+        "tags": [
+          "Utilisateurs"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UtilisateurAjout"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Utilisateur créé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CleApi"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tous les champs sont obligatoires"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/utilisateurs/recupererCleApi": {
+      "post": {
+        "summary": "Récupérer une clé API",
+        "description": "Retourne la clé API d'un utilisateur à partir du courriel et du mot de passe.",
+        "tags": [
+          "Utilisateurs"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connexion"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Clé API récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CleApi"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Courriel et mot de passe obligatoires"
+          },
+          "401": {
+            "description": "Courriel ou mot de passe invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    },
+    "/api/utilisateurs/modifierCleApi": {
+      "patch": {
+        "summary": "Régénérer une clé API",
+        "description": "Génère une nouvelle clé API pour un utilisateur à partir du courriel et du mot de passe.",
+        "tags": [
+          "Utilisateurs"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connexion"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Nouvelle clé API générée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CleApi"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Courriel et mot de passe obligatoires"
+          },
+          "401": {
+            "description": "Courriel ou mot de passe invalide"
+          },
+          "500": {
+            "description": "Erreur serveur"
+          }
+        }
+      }
+    }
+  }
+}

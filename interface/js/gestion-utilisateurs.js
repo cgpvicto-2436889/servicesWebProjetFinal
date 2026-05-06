@@ -35,11 +35,9 @@ function ajouterUtilisateurs() {
     if (reponse.ok) {
         const resultat = await reponse.json();
         console.log("Resultat :", resultat);
-        
-        if (reponse.ok) {
-            console.log("Utilisateur ajouté :", resultat);
-            alert("Compte créé avec succès. Ta clé API est : " + resultat.cle_api);
-        }
+
+        console.log("Utilisateur ajouté :", resultat);
+        alert("Compte créé avec succès. Ta clé API est : " + resultat.cle_api);
     } else {
         console.log("Erreur :", resultat);
         alert(resultat.message);
