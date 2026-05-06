@@ -46,7 +46,7 @@
                         <label for="password-ajout">Mot de passe</label>
                         <input type="password" id="password-ajout" name="password" placeholder="Mot de passe">
 
-                        <button type="submit">Créer l’utilisateur</button>
+                        <button type="submit" id="boutton-ajout">Créer l’utilisateur</button>
                     </form>
                 </section>
 
@@ -60,21 +60,11 @@
                         <label for="password-recuperer">Mot de passe</label>
                         <input type="password" id="password-recuperer" name="password" placeholder="Mot de passe">
 
-                        <button type="submit">Récupérer la clé</button>
-                    </form>
-                </section>
-
-                <section class="bloc bloc-large">
-                    <h2>Régénérer une nouvelle clé API</h2>
-
-                    <form id="form-modifier-cle">
-                        <label for="courriel-modifier">Courriel</label>
-                        <input type="email" id="courriel-modifier" name="courriel" placeholder="exemple@courriel.com">
-
-                        <label for="password-modifier">Mot de passe</label>
-                        <input type="password" id="password-modifier" name="password" placeholder="Mot de passe">
-
-                        <button type="submit">Générer une nouvelle clé</button>
+                        <button type="submit" id="boutton-recuperer">Récupérer la clé</button>
+                            <label>
+                                <input type="checkbox" id="modifier-cle">
+                                Générer une nouvelle clé
+                            </label>
                     </form>
                 </section>
             </div>
