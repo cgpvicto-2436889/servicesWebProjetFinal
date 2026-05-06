@@ -45,7 +45,7 @@
           },
           "titre": {
             "type": "string",
-            "example": "Le Petit Prince"
+            "example": "livre exemple"
           },
           "auteur": {
             "type": "string",
