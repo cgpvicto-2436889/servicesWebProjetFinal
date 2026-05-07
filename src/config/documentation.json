@@ -140,10 +140,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Livre"
-                  }
+                  "type": "array"
                 }
               }
             }
@@ -152,9 +149,6 @@
             "description": "Clé API absente ou invalide",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Message"
-                }
               }
             }
           },
@@ -182,10 +176,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Livre"
-                  }
+                  "type": "array"
                 }
               }
             }
@@ -229,7 +220,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Livre"
                 }
               }
             }
@@ -239,7 +229,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
                 }
               }
             }
@@ -270,7 +259,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LivreAjout"
               }
             }
           }
@@ -281,7 +269,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
                 },
                 "example": {
                   "message": "Livre ajouté avec succès"
@@ -327,7 +314,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LivreAjout"
               }
             }
           }
@@ -338,7 +324,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Livre"
                 }
               }
             }
@@ -404,7 +389,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Livre"
                 }
               }
             }
@@ -451,7 +435,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
                 },
                 "example": {
                   "message": "Livre supprimé"
@@ -483,7 +466,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UtilisateurAjout"
               }
             }
           }
@@ -494,7 +476,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CleApi"
                 }
               }
             }
@@ -520,7 +501,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Connexion"
               }
             }
           }
@@ -531,7 +511,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CleApi"
                 }
               }
             }
@@ -560,7 +539,6 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Connexion"
               }
             }
           }
@@ -571,7 +549,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CleApi"
                 }
               }
             }
