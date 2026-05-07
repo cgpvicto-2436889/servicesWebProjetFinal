@@ -6,16 +6,6 @@
     "description": "API permettant de gérer des livres, des utilisateurs et des clés API pour une bibliothèque.",
     "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "http://localhost:3000",
-      "description": "Serveur local"
-    },
-    {
-      "url": "https://serviceswebprojetfinal.onrender.com",
-      "description": "Serveur Render"
-    }
-  ],
   "tags": [
     {
       "name": "Livres",
@@ -35,41 +25,6 @@
         "description": "Clé API à envoyer dans l'entête Authorization"
       }
     },
-    "schemas": {
-      "Livre": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "bibliotheque_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "titre": {
-            "type": "string",
-            "example": "Le Petit Prince"
-          },
-          "auteur": {
-            "type": "string",
-            "example": "Antoine de Saint-Exupéry"
-          },
-          "isbn": {
-            "type": "string",
-            "example": "9782070612758"
-          },
-          "date_ajout": {
-            "type": "string",
-            "format": "date",
-            "example": "2024-01-10"
-          },
-          "disponible": {
-            "type": "boolean",
-            "example": true
-          }
-        }
-      },
       "LivreAjout": {
         "type": "object",
         "required": [
@@ -165,9 +120,8 @@
           }
         }
       }
-    }
-  },
-  "paths": {
+    },
+    "paths": {
     "/api/livres/getLivres": {
       "get": {
         "summary": "Récupérer tous les livres",
