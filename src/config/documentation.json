@@ -22,9 +22,44 @@
         "type": "apiKey",
         "in": "header",
         "name": "Authorization",
-        "description": "Clé API à envoyer dans l'entête Authorization"
+        "description": "Clé API à envoyer dans l'entête Authorization au format cle_api VOTRE_CLE_API"
       }
     },
+    "schemas": {
+      "Livre": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "bibliotheque_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "titre": {
+            "type": "string",
+            "example": "Le Petit Prince"
+          },
+          "auteur": {
+            "type": "string",
+            "example": "Antoine de Saint-Exupéry"
+          },
+          "isbn": {
+            "type": "string",
+            "example": "9782070612758"
+          },
+          "date_ajout": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-10"
+          },
+          "disponible": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
       "LivreAjout": {
         "type": "object",
         "required": [
@@ -60,6 +95,18 @@
           "disponible": {
             "type": "boolean",
             "example": true
+          }
+        }
+      },
+      "LivreStatut": {
+        "type": "object",
+        "required": [
+          "disponible"
+        ],
+        "properties": {
+          "disponible": {
+            "type": "boolean",
+            "example": false
           }
         }
       },
@@ -120,8 +167,9 @@
           }
         }
       }
-    },
-    "paths": {
+    }
+  },
+  "paths": {
     "/api/livres/getLivres": {
       "get": {
         "summary": "Récupérer tous les livres",
@@ -140,8 +188,22 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array"
-                }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Livre"
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "bibliotheque_id": 1,
+                    "titre": "Le Petit Prince",
+                    "auteur": "Antoine de Saint-Exupéry",
+                    "isbn": "9782070612758",
+                    "date_ajout": "2024-01-10",
+                    "disponible": true
+                  }
+                ]
               }
             }
           },
@@ -149,11 +211,27 @@
             "description": "Clé API absente ou invalide",
             "content": {
               "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
               }
             }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -176,16 +254,50 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array"
-                }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Livre"
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "bibliotheque_id": 1,
+                    "titre": "Le Petit Prince",
+                    "auteur": "Antoine de Saint-Exupéry",
+                    "isbn": "9782070612758",
+                    "date_ajout": "2024-01-10",
+                    "disponible": true
+                  }
+                ]
               }
             }
           },
           "401": {
-            "description": "Clé API absente ou invalide"
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -220,6 +332,16 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Livre"
+                },
+                "example": {
+                  "id": 1,
+                  "bibliotheque_id": 1,
+                  "titre": "Le Petit Prince",
+                  "auteur": "Antoine de Saint-Exupéry",
+                  "isbn": "9782070612758",
+                  "date_ajout": "2024-01-10",
+                  "disponible": true
                 }
               }
             }
@@ -229,15 +351,39 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Livre introuvable"
                 }
               }
             }
           },
           "401": {
-            "description": "Clé API absente ou invalide"
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -259,6 +405,7 @@
           "content": {
             "application/json": {
               "schema": {
+                "$ref": "#/components/schemas/LivreAjout"
               }
             }
           }
@@ -269,6 +416,7 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Message"
                 },
                 "example": {
                   "message": "Livre ajouté avec succès"
@@ -276,11 +424,44 @@
               }
             }
           },
+          "400": {
+            "description": "Tous les champs sont obligatoires",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Tous les champs sont obligatoires"
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Clé API absente ou invalide"
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -314,6 +495,7 @@
           "content": {
             "application/json": {
               "schema": {
+                "$ref": "#/components/schemas/LivreAjout"
               }
             }
           }
@@ -324,18 +506,65 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Livre modifié avec succès"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tous les champs sont obligatoires",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Tous les champs sont obligatoires"
                 }
               }
             }
           },
           "404": {
-            "description": "Livre introuvable"
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Livre introuvable"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Clé API absente ou invalide"
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -369,16 +598,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "disponible"
-                ],
-                "properties": {
-                  "disponible": {
-                    "type": "boolean",
-                    "example": false
-                  }
-                }
+                "$ref": "#/components/schemas/LivreStatut"
               }
             }
           }
@@ -389,18 +609,65 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Statut du livre modifié avec succès"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Le statut du livre est obligatoire",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Le statut du livre est obligatoire"
                 }
               }
             }
           },
           "404": {
-            "description": "Livre introuvable"
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Livre introuvable"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Clé API absente ou invalide"
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -435,6 +702,7 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/Message"
                 },
                 "example": {
                   "message": "Livre supprimé"
@@ -443,13 +711,43 @@
             }
           },
           "404": {
-            "description": "Livre introuvable"
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Livre introuvable"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Clé API absente ou invalide"
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -466,6 +764,7 @@
           "content": {
             "application/json": {
               "schema": {
+                "$ref": "#/components/schemas/UtilisateurAjout"
               }
             }
           }
@@ -476,15 +775,52 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/CleApi"
+                },
+                "example": {
+                  "cle_api": "816-3a5b-4534-8d44-7b44a0313d65"
                 }
               }
             }
           },
           "400": {
-            "description": "Tous les champs sont obligatoires"
+            "description": "Tous les champs sont obligatoires",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Tous les champs sont obligatoires"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Le courriel existe déjà",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Ce courriel est déjà utilisé"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -501,6 +837,7 @@
           "content": {
             "application/json": {
               "schema": {
+                "$ref": "#/components/schemas/Connexion"
               }
             }
           }
@@ -511,18 +848,52 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/CleApi"
+                },
+                "example": {
+                  "cle_api": "816-3a5b-4534-8d44-7b44a0313d65"
                 }
               }
             }
           },
           "400": {
-            "description": "Courriel et mot de passe obligatoires"
+            "description": "Courriel et mot de passe obligatoires",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Courriel et mot de passe obligatoires"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Courriel ou mot de passe invalide"
+            "description": "Courriel ou mot de passe invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Courriel ou mot de passe invalide"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
@@ -539,6 +910,7 @@
           "content": {
             "application/json": {
               "schema": {
+                "$ref": "#/components/schemas/Connexion"
               }
             }
           }
@@ -549,18 +921,52 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "$ref": "#/components/schemas/CleApi"
+                },
+                "example": {
+                  "cle_api": "816-3a5b-4534-8d44-7b44a0313d65"
                 }
               }
             }
           },
           "400": {
-            "description": "Courriel et mot de passe obligatoires"
+            "description": "Courriel et mot de passe obligatoires",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Courriel et mot de passe obligatoires"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Courriel ou mot de passe invalide"
+            "description": "Courriel ou mot de passe invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Courriel ou mot de passe invalide"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erreur serveur"
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
           }
         }
       }
