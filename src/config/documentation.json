@@ -24,149 +24,6 @@
         "name": "Authorization",
         "description": "Clé API à envoyer dans l'entête Authorization au format cle_api VOTRE_CLE_API"
       }
-    },
-    "schemas": {
-      "Livre": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
-          "bibliotheque_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "titre": {
-            "type": "string",
-            "example": "TestLivre"
-          },
-          "auteur": {
-            "type": "string",
-            "example": "TestAuteur"
-          },
-          "isbn": {
-            "type": "string",
-            "example": "TEST-ISBN-12345"
-          },
-          "date_ajout": {
-            "type": "string",
-            "format": "date",
-            "example": "2026-05-11"
-          },
-          "disponible": {
-            "type": "boolean",
-            "example": true
-          }
-        }
-      },
-      "LivreAjout": {
-        "type": "object",
-        "required": [
-          "bibliotheque_id",
-          "titre",
-          "auteur",
-          "isbn",
-          "date_ajout",
-          "disponible"
-        ],
-        "properties": {
-          "bibliotheque_id": {
-            "type": "integer",
-            "example": 1
-          },
-          "titre": {
-            "type": "string",
-            "example": "TestLivre"
-          },
-          "auteur": {
-            "type": "string",
-            "example": "TestAuteur"
-          },
-          "isbn": {
-            "type": "string",
-            "example": "TEST-ISBN-12345"
-          },
-          "date_ajout": {
-            "type": "string",
-            "format": "date",
-            "example": "2026-05-11"
-          },
-          "disponible": {
-            "type": "boolean",
-            "example": true
-          }
-        }
-      },
-      "LivreStatut": {
-        "type": "object",
-        "required": [
-          "disponible"
-        ],
-        "properties": {
-          "disponible": {
-            "type": "boolean",
-            "example": false
-          }
-        }
-      },
-      "UtilisateurAjout": {
-        "type": "object",
-        "required": [
-          "nom",
-          "courriel",
-          "password"
-        ],
-        "properties": {
-          "nom": {
-            "type": "string",
-            "example": "TestUtilisateur"
-          },
-          "courriel": {
-            "type": "string",
-            "example": "testutilisateur@test.com"
-          },
-          "password": {
-            "type": "string",
-            "example": "test1234"
-          }
-        }
-      },
-      "Connexion": {
-        "type": "object",
-        "required": [
-          "courriel",
-          "password"
-        ],
-        "properties": {
-          "courriel": {
-            "type": "string",
-            "example": "testutilisateur@test.com"
-          },
-          "password": {
-            "type": "string",
-            "example": "test1234"
-          }
-        }
-      },
-      "CleApi": {
-        "type": "object",
-        "properties": {
-          "cle_api": {
-            "type": "string",
-            "example": "test-cle-api-123456"
-          }
-        }
-      },
-      "Message": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "example": "Livre introuvable"
-          }
-        }
-      }
     }
   },
   "paths": {
@@ -190,7 +47,38 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Livre"
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "bibliotheque_id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "titre": {
+                        "type": "string",
+                        "example": "TestLivre"
+                      },
+                      "auteur": {
+                        "type": "string",
+                        "example": "TestAuteur"
+                      },
+                      "isbn": {
+                        "type": "string",
+                        "example": "TEST-ISBN-12345"
+                      },
+                      "date_ajout": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-05-11"
+                      },
+                      "disponible": {
+                        "type": "boolean",
+                        "example": true
+                      }
+                    }
                   }
                 },
                 "example": [
@@ -212,7 +100,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Vous devez fournir une clé api"
@@ -225,7 +119,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -256,7 +156,38 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Livre"
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "bibliotheque_id": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "titre": {
+                        "type": "string",
+                        "example": "TestLivre"
+                      },
+                      "auteur": {
+                        "type": "string",
+                        "example": "TestAuteur"
+                      },
+                      "isbn": {
+                        "type": "string",
+                        "example": "TEST-ISBN-12345"
+                      },
+                      "date_ajout": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-05-11"
+                      },
+                      "disponible": {
+                        "type": "boolean",
+                        "example": true
+                      }
+                    }
                   }
                 },
                 "example": [
@@ -278,7 +209,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Vous devez fournir une clé api"
@@ -291,7 +228,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -332,7 +275,38 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Livre"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "bibliotheque_id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "titre": {
+                      "type": "string",
+                      "example": "TestLivre"
+                    },
+                    "auteur": {
+                      "type": "string",
+                      "example": "TestAuteur"
+                    },
+                    "isbn": {
+                      "type": "string",
+                      "example": "TEST-ISBN-12345"
+                    },
+                    "date_ajout": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "2026-05-11"
+                    },
+                    "disponible": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
                 },
                 "example": {
                   "id": 1,
@@ -351,7 +325,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Livre introuvable"
@@ -364,7 +344,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Vous devez fournir une clé api"
@@ -377,7 +363,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -405,7 +397,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LivreAjout"
+                "type": "object",
+                "required": [
+                  "bibliotheque_id",
+                  "titre",
+                  "auteur",
+                  "isbn",
+                  "date_ajout",
+                  "disponible"
+                ],
+                "properties": {
+                  "bibliotheque_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "titre": {
+                    "type": "string",
+                    "example": "TestLivre"
+                  },
+                  "auteur": {
+                    "type": "string",
+                    "example": "TestAuteur"
+                  },
+                  "isbn": {
+                    "type": "string",
+                    "example": "TEST-ISBN-12345"
+                  },
+                  "date_ajout": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-05-11"
+                  },
+                  "disponible": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
               }
             }
           }
@@ -416,7 +443,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Livre ajouté avec succès"
@@ -429,7 +462,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Tous les champs sont obligatoires"
@@ -442,7 +481,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Vous devez fournir une clé api"
@@ -455,7 +500,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -495,7 +546,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LivreAjout"
+                "type": "object",
+                "required": [
+                  "bibliotheque_id",
+                  "titre",
+                  "auteur",
+                  "isbn",
+                  "date_ajout",
+                  "disponible"
+                ],
+                "properties": {
+                  "bibliotheque_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "titre": {
+                    "type": "string",
+                    "example": "TestLivre"
+                  },
+                  "auteur": {
+                    "type": "string",
+                    "example": "TestAuteur"
+                  },
+                  "isbn": {
+                    "type": "string",
+                    "example": "TEST-ISBN-12345"
+                  },
+                  "date_ajout": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-05-11"
+                  },
+                  "disponible": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
               }
             }
           }
@@ -506,7 +592,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Livre modifié avec succès"
@@ -519,7 +611,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Tous les champs sont obligatoires"
@@ -532,7 +630,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Livre introuvable"
@@ -545,7 +649,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Vous devez fournir une clé api"
@@ -558,7 +668,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -598,7 +714,16 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LivreStatut"
+                "type": "object",
+                "required": [
+                  "disponible"
+                ],
+                "properties": {
+                  "disponible": {
+                    "type": "boolean",
+                    "example": false
+                  }
+                }
               }
             }
           }
@@ -609,7 +734,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Statut du livre modifié avec succès"
@@ -622,7 +753,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Le statut du livre est obligatoire"
@@ -635,7 +772,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Livre introuvable"
@@ -648,7 +791,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Vous devez fournir une clé api"
@@ -661,7 +810,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -702,7 +857,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Livre supprimé"
@@ -715,7 +876,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Livre introuvable"
@@ -728,7 +895,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Vous devez fournir une clé api"
@@ -741,7 +914,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -764,7 +943,26 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UtilisateurAjout"
+                "type": "object",
+                "required": [
+                  "nom",
+                  "courriel",
+                  "password"
+                ],
+                "properties": {
+                  "nom": {
+                    "type": "string",
+                    "example": "TestUtilisateur"
+                  },
+                  "courriel": {
+                    "type": "string",
+                    "example": "testutilisateur@test.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "test1234"
+                  }
+                }
               }
             }
           }
@@ -775,7 +973,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CleApi"
+                  "type": "object",
+                  "properties": {
+                    "cle_api": {
+                      "type": "string",
+                      "example": "test-cle-api-123456"
+                    }
+                  }
                 },
                 "example": {
                   "cle_api": "test-cle-api-123456"
@@ -788,7 +992,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Tous les champs sont obligatoires"
@@ -801,7 +1011,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Ce courriel est déjà utilisé"
@@ -814,7 +1030,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -837,7 +1059,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Connexion"
+                "type": "object",
+                "required": [
+                  "courriel",
+                  "password"
+                ],
+                "properties": {
+                  "courriel": {
+                    "type": "string",
+                    "example": "testutilisateur@test.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "test1234"
+                  }
+                }
               }
             }
           }
@@ -848,7 +1084,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CleApi"
+                  "type": "object",
+                  "properties": {
+                    "cle_api": {
+                      "type": "string",
+                      "example": "test-cle-api-123456"
+                    }
+                  }
                 },
                 "example": {
                   "cle_api": "test-cle-api-123456"
@@ -861,7 +1103,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Courriel et mot de passe obligatoires"
@@ -874,7 +1122,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Courriel ou mot de passe invalide"
@@ -887,7 +1141,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
@@ -910,7 +1170,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Connexion"
+                "type": "object",
+                "required": [
+                  "courriel",
+                  "password"
+                ],
+                "properties": {
+                  "courriel": {
+                    "type": "string",
+                    "example": "testutilisateur@test.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "test1234"
+                  }
+                }
               }
             }
           }
@@ -921,7 +1195,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CleApi"
+                  "type": "object",
+                  "properties": {
+                    "cle_api": {
+                      "type": "string",
+                      "example": "test-cle-api-123456"
+                    }
+                  }
                 },
                 "example": {
                   "cle_api": "test-cle-api-123456"
@@ -934,7 +1214,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Courriel et mot de passe obligatoires"
@@ -947,7 +1233,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Courriel ou mot de passe invalide"
@@ -960,7 +1252,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Message"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Livre introuvable"
+                    }
+                  }
                 },
                 "example": {
                   "message": "Erreur serveur"
