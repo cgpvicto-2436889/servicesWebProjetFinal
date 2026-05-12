@@ -61,21 +61,19 @@ export async function modifierCleApiController(req, res) {
 
         const motDePasseValide = await bcrypt.compare( password, utilisateurs.password );
 
-        if (motDePasseValide) {
-            // Mot de passe correct
-            return res.status(200).json({ message: "Connexion réussie" });
-        } else {
-            // Mot de passe incorrect
+        if (!motDePasseValide) {
             return res.status(401).json({ message: "Courriel ou mot de passe invalide" });
+        } else {
+            const nouvelleCle = crypto.randomUUID();
+
+            const modifierCleApi = await modifierCleApiModel(utilisateurs.id, nouvelleCle);
+
+            return res.status(200).json({
+                cle_api: modifierCleApi.cle_api
+            });            
         }
 
-        const nouvelleCle = crypto.randomUUID();
 
-        const modifierCleApi = await modifierCleApiModel(utilisateurs.id, nouvelleCle);
-
-        return res.status(200).json({
-            cle_api: modifierCleApi.cle_api
-        });
 
     } catch (erreur) {
         res.status(500).json({ message: erreur.message });

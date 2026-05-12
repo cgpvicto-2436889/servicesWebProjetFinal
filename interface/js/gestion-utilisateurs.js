@@ -1,60 +1,72 @@
-const courrielRecuperer = document.getElementById("courriel-recuperer").value;
-const passwordRecuperer = document.getElementById("password-recuperer").value;
+
+
 const bouttonRecuperer = document.getElementById("boutton-recuperer");
-
-const nomAjout = document.getElementById("nom").value;
-const courrielAjout = document.getElementById("courriel-ajout").value;
-const passwordAjout = document.getElementById("password-ajout").value;
 const bouttonAjout = document.getElementById("boutton-ajout");
-
 const checkboxChangerCle = document.getElementById("modifier-cle");
 
-bouttonAjout.addEventListener("click", ajouterUtilisateurs());
+bouttonAjout.addEventListener("click", ajouterUtilisateurs);
+bouttonRecuperer.addEventListener("click", recupererCleApi);
 
 
-function ajouterUtilisateurs() {
-    if (courrielAjout == null) {
-        return res.status(400).json({ message: "Le courriel est obligatoire" });
+async function ajouterUtilisateurs(event) {
+    event.preventDefault();
+    const nomAjout = document.getElementById("nom").value;
+    const courrielAjout = document.getElementById("courriel-ajout").value;
+    const passwordAjout = document.getElementById("password-ajout").value;
+
+    if (!courrielAjout) {
+        alert("Le courriel est obligatoire");
+        return;
     }
-    if (passwordAjout == null) {
-        return res.status(400).json({ message: "Le mot de passe est obligatoire" });
+    if (!passwordAjout) {
+        alert("Le mot de passe est obligatoire");
+        return;
     }
     
-    const reponse = await fetch("https://serviceswebprojetfinal.onrender.com/api/utilisateurs/ajouterUtilisateur", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-            nom: nomAjout,
-            courriel: courrielAjout,
-            password: passwordAjout
-        })
-    });
+    try {
+        const reponse = await fetch("https://serviceswebprojetfinal.onrender.com/api/utilisateurs/ajouterUtilisateur", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                nom: nomAjout,
+                courriel: courrielAjout,
+                password: passwordAjout
+            })
+        });
 
-    if (reponse.ok) {
         const resultat = await reponse.json();
-        console.log("Resultat :", resultat);
-
-        console.log("Utilisateur ajouté :", resultat);
-        alert("Compte créé avec succès. Ta clé API est : " + resultat.cle_api);
-    } else {
-        console.log("Erreur :", resultat);
-        alert(resultat.message);
+        if (reponse.ok) {
+            console.log("Utilisateur ajouté :", resultat);
+            alert("Compte créé avec succès. Ta clé API est : " + resultat.cle_api);
+        } else {
+            // Si le serveur renvoie une erreur (ex: 400 ou 500)
+            alert("Erreur : " + "Problème lors de l'ajout");
+        }
+    } catch (error) {
+        console.error("Erreur réseau :", error);
+        alert("Impossible de contacter le serveur.");
     }
 }
 
-function ajouterUtilisateurs() {
+async function recupererCleApi(event) {
+    event.preventDefault();
+    const courrielRecuperer = document.getElementById("courriel-recuperer").value;
+    const passwordRecuperer = document.getElementById("password-recuperer").value;
+
     if (courrielRecuperer == null) {
-        return res.status(400).json({ message: "Le courriel est obligatoire" });
+        console.log({ message: "Le courriel est obligatoire" });
+        return;
     }
     if (passwordRecuperer == null) {
-        return res.status(400).json({ message: "Le mot de passe est obligatoire" });
+        console.log({ message: "Le mot de passe est obligatoire" });
+        return;
     }
     
     if (checkboxChangerCle.checked) {
-        const reponse = await fetch("https://serviceswebprojetfinal.onrender.com/api/utilisateurs/recupererCleApi", {
-            method: 'patch',
+        const reponse = await fetch("https://serviceswebprojetfinal.onrender.com/api/utilisateurs/modifierCleApi", {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
@@ -98,7 +110,7 @@ function ajouterUtilisateurs() {
             }
         } else {
             console.log("Erreur :", "probleme");
-            alert(resultat.message);
+            alert("Erreur serveur");
         }
     }
 }
