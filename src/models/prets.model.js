@@ -1,16 +1,17 @@
 import pool from '../config/db_pg.js';
 
 /* Requête qui ajoute un prêts dans la base de donnée */
-export async function ajouterPretModel() {
+export async function ajouterPretModel(data) {
     const requete = `
-    INSERT INTO prets ( livre_id, emprunteur, date_retour )
-    VALUES ( livre_id = $1, emprunteur = $2, date_retour = $3 )
+    INSERT INTO prets (livre_id, emprunteur, date_retour)
+    VALUES ($1, $2, $3)
+    RETURNING id, livre_id, emprunteur, date_retour
     `;
 
     const parametres = [
-    livre_id,
-    emprunteur,
-    date_retour
+        data.livre_id,
+        data.emprunteur,
+        data.date_retour
     ];
 
     try {
