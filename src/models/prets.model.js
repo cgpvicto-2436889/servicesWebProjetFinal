@@ -32,7 +32,7 @@ export async function modifierPretModel(id, data) {
     emprunteur = $2,
     date_retour = $3
     WHERE id = $4
-    RETURNING livre_id, emprunteur, titre, date_retour
+    RETURNING livre_id, emprunteur, date_retour
     `;
 
     const parametres = [
