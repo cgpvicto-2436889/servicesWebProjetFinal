@@ -39,6 +39,6 @@ export async function supprimerPretController(req, res) {
 
         res.status(200).json({ message: "Prêt supprimé" });
     } catch (erreur) {
-        res.status(500).json({ message: "Erreur serveur" });
+        res.status(500).json({ message: erreur.message });
     }
 }
