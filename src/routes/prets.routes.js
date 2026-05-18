@@ -5,6 +5,6 @@ const router = Router();
 
 router.post("/ajouterPret", ajouterPretController);
 router.put("/modifierPret/:id", modifierPretController);
-router.patch("/supprimerPret/:id", supprimerPretController);
+router.delete("/supprimerPret/:id", supprimerPretController);
 
 export default router;
