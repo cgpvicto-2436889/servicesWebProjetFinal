@@ -3,8 +3,8 @@ import { ajouterPretController, modifierPretController, supprimerPretController 
 
 const router = Router();
 
-router.post("/", ajouterPretController);
-router.get("/:id", modifierPretController);
-router.patch("/:id", supprimerPretController);
+router.post("/ajouterPret", ajouterPretController);
+router.get("/modifierPret/:id", modifierPretController);
+router.patch("/supprimerPret/:id", supprimerPretController);
 
 export default router;

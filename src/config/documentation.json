@@ -14,6 +14,10 @@
     {
       "name": "Utilisateurs",
       "description": "Routes pour gérer les utilisateurs et les clés API"
+    },
+    {
+      "name": "Prêts",
+      "description": "Routes pour gérer les prêts"
     }
   ],
   "components": {
@@ -1257,6 +1261,427 @@
                     "message": {
                       "type": "string",
                       "example": "Livre introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prets/ajouterPret": {
+      "post": {
+        "summary": "Ajouter un prêt",
+        "description": "Ajoute un nouveau prêt dans la bibliothèque.",
+        "tags": [
+          "Prêts"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "livre_id",
+                  "emprunteur",
+                  "date_retour"
+                ],
+                "properties": {
+                  "livre_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "emprunteur": {
+                    "type": "string",
+                    "example": "TestEmprunteur"
+                  },
+                  "date_retour": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-05-20"
+                  }
+                }
+              },
+              "example": {
+                "livre_id": 1,
+                "emprunteur": "TestEmprunteur",
+                "date_retour": "2026-05-20"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Prêt ajouté avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "livre_id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "emprunteur": {
+                      "type": "string",
+                      "example": "TestEmprunteur"
+                    },
+                    "date_retour": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "2026-05-20"
+                    }
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "livre_id": 1,
+                  "emprunteur": "TestEmprunteur",
+                  "date_retour": "2026-05-20"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tous les champs sont obligatoires",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Tous les champs sont obligatoires"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prets/modifierPret/{id}": {
+      "put": {
+        "summary": "Modifier un prêt",
+        "description": "Modifie toutes les informations d'un prêt selon son identifiant.",
+        "tags": [
+          "Prêts"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifiant du prêt",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "livre_id",
+                  "emprunteur",
+                  "date_retour"
+                ],
+                "properties": {
+                  "livre_id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "emprunteur": {
+                    "type": "string",
+                    "example": "TestEmprunteur"
+                  },
+                  "date_retour": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-05-20"
+                  }
+                }
+              },
+              "example": {
+                "livre_id": 1,
+                "emprunteur": "TestEmprunteur",
+                "date_retour": "2026-05-20"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Prêt modifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "livre_id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "emprunteur": {
+                      "type": "string",
+                      "example": "TestEmprunteur"
+                    },
+                    "date_retour": {
+                      "type": "string",
+                      "format": "date",
+                      "example": "2026-05-20"
+                    }
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "livre_id": 1,
+                  "emprunteur": "TestEmprunteur",
+                  "date_retour": "2026-05-20"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tous les champs sont obligatoires",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Tous les champs sont obligatoires"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prêt introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Prêt introuvable"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Erreur serveur"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prets/supprimerPret/{id}": {
+      "delete": {
+        "summary": "Supprimer un prêt",
+        "description": "Supprime un prêt selon son identifiant.",
+        "tags": [
+          "Prêts"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identifiant du prêt",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prêt supprimé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Prêt supprimé"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prêt introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Prêt introuvable"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API absente ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Vous devez fournir une clé api"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Prêt introuvable"
                     }
                   }
                 },
