@@ -52,7 +52,7 @@ export async function modifierPretModel(id, data) {
 /* Requête qui supprime un prêt de la base de donnée */
 export async function supprimerPretModel(id) {
     const requete = `
-        DELETE FROM prets
+        DELETE * FROM prets
         WHERE id = $1
     `;
 
