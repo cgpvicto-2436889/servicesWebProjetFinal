@@ -55,6 +55,7 @@ export async function supprimerPretModel(id) {
     const requete = `
         DELETE * FROM prets
         WHERE id = $1
+        RETURNING id
     `;
 
     const parametres = [id];
