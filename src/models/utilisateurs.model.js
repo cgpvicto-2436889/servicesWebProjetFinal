@@ -4,6 +4,7 @@ import crypto from 'crypto';
 
 const costFactor = 10;
 
+/* Requête qui ajoute un utilisateur dans la base de donnée */
 export async function ajouterUtilisateurModel(data) {
     const password_hash = await bcrypt.hash(data.password, costFactor);
     const cle_api = crypto.randomUUID();
@@ -25,6 +26,7 @@ export async function ajouterUtilisateurModel(data) {
     return resultat.rows[0];
 }
 
+/* Requête qui recupere la cle d'api de l'utilisateur avec son courriel et son mot de passe */
 export async function recupererCleApiModel(courriel) {
     const requete = `
         SELECT id, cle_api, password
@@ -36,6 +38,7 @@ export async function recupererCleApiModel(courriel) {
     return resultat.rows[0];
 }
 
+/* Requête qui modifie la clé d'api de l'utilisateur */
 export async function modifierCleApiModel(id, cle_api) {
     const requete = `
         UPDATE bibliotheque
@@ -50,6 +53,7 @@ export async function modifierCleApiModel(id, cle_api) {
     return resultat.rows[0];
 }
 
+/* Requête qui qui valide la clé d'api avec celle dans la base de donnée */
 export async function validationCle(cle_api) {
     const requete = `
         SELECT id

@@ -552,12 +552,10 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "bibliotheque_id",
                   "titre",
                   "auteur",
                   "isbn",
-                  "date_ajout",
-                  "disponible"
+                  "date_ajout"
                 ],
                 "properties": {
                   "bibliotheque_id": {

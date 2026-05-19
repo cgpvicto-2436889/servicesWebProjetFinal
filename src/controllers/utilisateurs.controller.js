@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import crypto from "crypto";
 import { ajouterUtilisateurModel, recupererCleApiModel, modifierCleApiModel } from "../models/utilisateurs.model.js";
 
+/* Éxécute la requete pour ajouter un utilisateur */
 export async function ajouterUtilisateurController(req, res) {
     try {
         if (!req.body.nom || !req.body.courriel || !req.body.password) {
@@ -17,6 +18,7 @@ export async function ajouterUtilisateurController(req, res) {
     }
 }
 
+/* Éxécute la requete pour récupéré la clé api */
 export async function recupererCleApiController(req, res) {
     try {
         const courriel = req.body.courriel;
@@ -26,7 +28,7 @@ export async function recupererCleApiController(req, res) {
             return res.status(400).json({ message: "Courriel et mot de passe obligatoires" });
         }
 
-        const utilisateurs = await recupererCleApiModel(courriel);
+        const utilisateurs = await recupererCleApiModel(courriel, password);
 
         if (!utilisateurs) {
             return res.status(401).json({ message: "Courriel ou mot de passe invalide" });
@@ -46,6 +48,7 @@ export async function recupererCleApiController(req, res) {
     }
 }
 
+/* Éxécute la requete qui modifie la clé api */
 export async function modifierCleApiController(req, res) {
     try {
         const courriel = req.body.courriel;

@@ -1,13 +1,18 @@
-
-
+// Initialisation des variables qui sont dans le html
 const bouttonRecuperer = document.getElementById("boutton-recuperer");
 const bouttonAjout = document.getElementById("boutton-ajout");
 const checkboxChangerCle = document.getElementById("modifier-cle");
 
+// Initialisation des boutons qui sont dans le html
 bouttonAjout.addEventListener("click", ajouterUtilisateurs);
 bouttonRecuperer.addEventListener("click", recupererCleApi);
 
 
+/**
+ * Ajoute un utilisateur avec fetch avec des infos fait dans un formulaire html
+ * @param {*} event Fait en sorte de pas refresh la page quand on le fait
+ * @returns 
+ */
 async function ajouterUtilisateurs(event) {
     event.preventDefault();
     const nomAjout = document.getElementById("nom").value;
@@ -41,7 +46,6 @@ async function ajouterUtilisateurs(event) {
             console.log("Utilisateur ajouté :", resultat);
             alert("Compte créé avec succès. Ta clé API est : " + resultat.cle_api);
         } else {
-            // Si le serveur renvoie une erreur (ex: 400 ou 500)
             alert("Erreur : " + "Problème lors de l'ajout");
         }
     } catch (error) {
@@ -50,11 +54,18 @@ async function ajouterUtilisateurs(event) {
     }
 }
 
+/**
+ * Va récupéré la clé api avec fetch avec des infos fait dans un formulaire html seulement si le checkbox est pas
+ * checked, sinon ca va modifier la clé si le checkbox est check
+ * @param {*} event Fait en sorte de pas refresh la page quand on le fait
+ * @returns 
+ */
 async function recupererCleApi(event) {
     event.preventDefault();
     const courrielRecuperer = document.getElementById("courriel-recuperer").value;
     const passwordRecuperer = document.getElementById("password-recuperer").value;
 
+    // Vérification
     if (courrielRecuperer == null) {
         console.log({ message: "Le courriel est obligatoire" });
         return;
@@ -64,6 +75,7 @@ async function recupererCleApi(event) {
         return;
     }
     
+    // Modifie si est checked
     if (checkboxChangerCle.checked) {
         const reponse = await fetch("https://serviceswebprojetfinal.onrender.com/api/utilisateurs/modifierCleApi", {
             method: 'PATCH',
@@ -76,6 +88,7 @@ async function recupererCleApi(event) {
             })
         });
 
+        // Verification
         if (reponse.ok) {
             const resultat = await reponse.json();
             console.log("Resultat :", resultat);
@@ -88,7 +101,9 @@ async function recupererCleApi(event) {
             console.log("Erreur :", "probleme");
             alert(resultat.message);
         }
+    //Recupere si pas check
     } else {
+        // Execution requete
         const reponse = await fetch("https://serviceswebprojetfinal.onrender.com/api/utilisateurs/recupererCleApi", {
             method: 'POST',
             headers: {
@@ -100,6 +115,7 @@ async function recupererCleApi(event) {
             })
         });
 
+        // Verification
         if (reponse.ok) {
             const resultat = await reponse.json();
             console.log("Resultat :", resultat);
